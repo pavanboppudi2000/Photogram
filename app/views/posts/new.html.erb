@@ -1,8 +1,13 @@
 <h3> New Form here</h3>
-<%= form_for :post , url: posts_path do |f| %>
+<%= form_for :post , html: { multipart: true } , url: posts_path do |f| %>
+ 
     <p>
         <%= f.label :Title %><br>
         <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :image %><br>
+        <%= f.file_field :image %>
     </p>
     <p>
         <%= f.label :Description %><br>

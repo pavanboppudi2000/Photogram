@@ -1,8 +1,12 @@
 <h1> Edit the Post</h1>
-<%= form_for :post , url: post_path(@post) , method: :patch  do |f| %>
+<%= form_for :post , html: { multipart: true } ,url: post_path(@post) , method: :patch  do |f| %>
     <p>
         <%= f.label :Title %><br>
         <%= f.text_field :title %>
+    </p>
+    <p>
+    <%= f.label :image %><br>
+    <%= f.file_field :image %>
     </p>
     <p>
         <%= f.label :Description %><br>

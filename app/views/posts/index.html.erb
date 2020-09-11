@@ -1,8 +1,9 @@
-<h1>All posts here</h1>
+
 
 <% @post.each do |p| %>
- Title:   <%= p.title %><br>
- Decription : <%= p.dec %><br>
- <%= link_to "EDIT" , edit_post_path(p) %>
- <%= link_to "Delete" , post_path(p) , method: :delete , data: {confirm: 'You are to delete a task?' } %><br>
+ <h2>Title:   <%= p.title %></h2>
+ <%= image_tag p.image.url(:medium) %><br>
+ <h3>Decription : <%= p.dec %></h3>
+ <h3><%= link_to "EDIT" , edit_post_path(p) %>
+ <%= link_to "Delete" , post_path(p) , method: :delete , data: {confirm: 'You are to delete a task?' } %></h3><br>
 <% end %>
