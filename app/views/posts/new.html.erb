@@ -1,1 +1,17 @@
-<h1>Form here</h1>
+<h3> New Form here</h3>
+<%= form_for :post , url: posts_path do |f| %>
+    <p>
+        <%= f.label :Title %><br>
+        <%= f.text_field :title %>
+    </p>
+    <p>
+        <%= f.label :Description %><br>
+        <%= f.text_field :dec %>
+    </p>
+
+    
+
+    <p>
+     <%= f.submit %>
+    </p>
+<% end %>
