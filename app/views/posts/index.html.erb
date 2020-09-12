@@ -7,3 +7,5 @@
  <h3><%= link_to "EDIT" , edit_post_path(p) %>
  <%= link_to "Delete" , post_path(p) , method: :delete , data: {confirm: 'You are to delete a task?' } %></h3><br>
 <% end %>
+
+<%= will_paginate @post %>
