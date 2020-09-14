@@ -1,0 +1,10 @@
+
+<% @posts.each do |post|%>
+<div class="posts" id="posts">
+<h2>Title:   <%= post.title %></h2>
+<%= image_tag post.image.url(:medium) %><br>
+<h3>Decription : <%= post.dec %></h3>
+<h3><%= link_to "EDIT" , edit_post_path(post) %>
+<%= link_to "Delete" , post_path(post) , method: :delete , data: {confirm: 'You are to delete a task?' } %></h3><br>
+</div>
+<% end %>

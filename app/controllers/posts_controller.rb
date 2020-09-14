@@ -1,6 +1,10 @@
 class PostsController < ApplicationController
     def index
-        @post=Post.paginate(:page => params[:page], :per_page => 1)
+        @posts=Post.paginate(:page => params[:page], :per_page => 3).order('created_at DESC')
+        respond_to do |format|
+            format.html
+            format.json  { render json: {entries: render_to_string(partial: "post", formats: [:html]), newNav: view_context.will_paginate(@posts)}}
+        end
     end
 
     def show

@@ -1,11 +1,41 @@
 
 
-<% @post.each do |p| %>
- <h2>Title:   <%= p.title %></h2>
- <%= image_tag p.image.url(:medium) %><br>
- <h3>Decription : <%= p.dec %></h3>
- <h3><%= link_to "EDIT" , edit_post_path(p) %>
- <%= link_to "Delete" , post_path(p) , method: :delete , data: {confirm: 'You are to delete a task?' } %></h3><br>
-<% end %>
+<div id="post" class="post">
+<%=render "post" %>
+</div>
 
-<%= will_paginate @post %>
+<div id="infinite">
+<%= will_paginate @posts %>
+</div>
+
+<script>
+window.addEventListener("scroll",async (event) => {
+
+	if((window.pageYOffset|| 0) + (window.innerHeight || 0)  >=Math.max( document.body.scrollHeight, document.body.offsetHeight, 
+		document.documentElement.clientHeight, document.documentElement.scrollHeight, document.documentElement.offsetHeight )) {
+           
+		let next_page= document.querySelector("a[rel='next']")
+		if(next_page == null){
+			return
+		}
+		const url= next_page.href 
+
+		
+		  
+		await fetch(url,{
+			method : 'GET',
+			headers : {
+				'Accept' : 'application/json'
+			}
+		})
+		.then(response => response.json())
+		.then(data => {
+			
+			document.getElementById("post").innerHTML += data.entries;
+            document.getElementById("infinite").innerHTML= data.newNav;
+            
+		});
+		
+	}
+});
+</script>
